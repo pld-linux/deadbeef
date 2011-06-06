@@ -6,6 +6,7 @@ License:	GPL v2 and LGPL v2.1
 Group:		X11/Applications/Multimedia
 Source0:	http://downloads.sourceforge.net/deadbeef/%{name}-%{version}.tar.bz2
 # Source0-md5:	be8359d1bd9cf7679cf2ca748996e726
+Patch0:		lm-missing-symbols.patch
 URL:		http://deadbeef.sourceforge.net/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	curl-devel
@@ -50,8 +51,10 @@ Mad plugin.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__automake}
 %configure \
 	--enable-gtkui \
 	--docdir=%{_docdir}/%{name}-%{version}
