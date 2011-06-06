@@ -1,3 +1,13 @@
+diff -uNr deadbeef-0.5.1.old/plugins/ffap/Makefile.am deadbeef-0.5.1/plugins/ffap/Makefile.am
+--- deadbeef-0.5.1.old/plugins/ffap/Makefile.am	2011-03-03 21:06:15.000000000 +0100
++++ deadbeef-0.5.1/plugins/ffap/Makefile.am	2011-06-06 21:27:36.783839885 +0200
+@@ -4,5 +4,6 @@
+ ffap_la_SOURCES = ffap.c
+ ffap_la_LDFLAGS = -module
+ 
++ffap_la_LIBADD = $(LDADD) -lm
+ AM_CFLAGS = $(CFLAGS) -std=c99
+ endif
 diff -uNr deadbeef-0.5.1.old/plugins/ffmpeg/Makefile.am deadbeef-0.5.1/plugins/ffmpeg/Makefile.am
 --- deadbeef-0.5.1.old/plugins/ffmpeg/Makefile.am	2011-03-03 21:06:15.000000000 +0100
 +++ deadbeef-0.5.1/plugins/ffmpeg/Makefile.am	2011-06-06 21:19:42.009745288 +0200
