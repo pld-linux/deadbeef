@@ -1,17 +1,17 @@
 Summary:	Ultimate Music Player
 Name:		deadbeef
-Version:	0.4.4
+Version:	0.5.1
 Release:	0.1
 License:	GPL v2 and LGPL v2.1
 Group:		X11/Applications/Multimedia
-Source0:	http://downloads.sourceforge.net/project/deadbeef/%{name}-%{version}.tar.bz2
-# Source0-md5:	546e63d456d6a5625461019b15501e38
+Source0:	http://downloads.sourceforge.net/deadbeef/%{name}-%{version}.tar.bz2
+# Source0-md5:	be8359d1bd9cf7679cf2ca748996e726
 URL:		http://deadbeef.sourceforge.net/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	curl-devel
 BuildRequires:	dbus-devel
 BuildRequires:	ffmpeg-devel
-BuildRequires:	gtk+2-devel
+BuildRequires:	gtk+2-devel >= 2.12
 BuildRequires:	libcddb-devel
 BuildRequires:	libcdio-devel
 BuildRequires:	libmad-devel
