@@ -1,0 +1,29 @@
+--- deadbeef-0.5.1/plugins/ffmpeg/ffmpeg.c~	2011-05-22 15:58:53.000000000 +0200
++++ deadbeef-0.5.1/plugins/ffmpeg/ffmpeg.c	2011-06-30 10:13:28.476471360 +0200
+@@ -140,7 +140,7 @@
+     for (i = 0; i < info->fctx->nb_streams; i++)
+     {
+         info->ctx = info->fctx->streams[i]->codec;
+-        if (info->ctx->codec_type == CODEC_TYPE_AUDIO)
++        if (info->ctx->codec_type == AVMEDIA_TYPE_AUDIO)
+         {
+             info->codec = avcodec_find_decoder (info->ctx->codec_id);
+             if (info->codec != NULL) {
+@@ -490,7 +490,7 @@
+     for (i = 0; i < fctx->nb_streams; i++)
+     {
+         ctx = fctx->streams[i]->codec;
+-        if (ctx->codec_type == CODEC_TYPE_AUDIO)
++        if (ctx->codec_type == AVMEDIA_TYPE_AUDIO)
+         {
+             codec = avcodec_find_decoder(ctx->codec_id);
+             if (codec != NULL && !strcasecmp (codec->name, "alac")) { // only open alac streams
+@@ -745,7 +745,7 @@
+     for (i = 0; i < fctx->nb_streams; i++)
+     {
+         ctx = fctx->streams[i]->codec;
+-        if (ctx->codec_type == CODEC_TYPE_AUDIO)
++        if (ctx->codec_type == AVMEDIA_TYPE_AUDIO)
+         {
+             codec = avcodec_find_decoder(ctx->codec_id);
+             if (codec != NULL)
