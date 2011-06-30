@@ -1,5 +1,5 @@
 --- deadbeef-0.5.1/plugins/ffmpeg/ffmpeg.c~	2011-05-22 15:58:53.000000000 +0200
-+++ deadbeef-0.5.1/plugins/ffmpeg/ffmpeg.c	2011-06-30 10:13:28.476471360 +0200
++++ deadbeef-0.5.1/plugins/ffmpeg/ffmpeg.c	2011-06-30 10:24:44.386376024 +0200
 @@ -140,7 +140,7 @@
      for (i = 0; i < info->fctx->nb_streams; i++)
      {
@@ -18,6 +18,15 @@
          {
              codec = avcodec_find_decoder(ctx->codec_id);
              if (codec != NULL && !strcasecmp (codec->name, "alac")) { // only open alac streams
+@@ -704,7 +704,7 @@
+     ffmpeg_init_exts ();
+     avcodec_init ();
+     av_register_all ();
+-    av_register_protocol (&vfswrapper);
++    av_register_protocol2 (&vfswrapper);
+     return 0;
+ }
+ 
 @@ -745,7 +745,7 @@
      for (i = 0; i < fctx->nb_streams; i++)
      {
