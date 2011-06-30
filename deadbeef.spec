@@ -217,6 +217,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root)%{_libdir}/deadbeef/vfs_curl.so*
 %attr(755,root,root)%{_libdir}/deadbeef/vtx.so*
 %attr(755,root,root)%{_libdir}/deadbeef/wildmidi.so*
+%dir %{_libdir}/deadbeef/convpresets
 %{_libdir}/deadbeef/convpresets/*
 
 %files plugin-aac
