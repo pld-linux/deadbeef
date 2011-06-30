@@ -23,7 +23,7 @@
      avcodec_init ();
      av_register_all ();
 -    av_register_protocol (&vfswrapper);
-+    av_register_protocol2 (&vfswrapper);
++    av_register_protocol2 (&vfswrapper, sizeof(&vfswrapper));
      return 0;
  }
  
