@@ -13,7 +13,7 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	automake >= 1.11
 BuildRequires:	curl-devel
 BuildRequires:	dbus-devel
-BuildRequires:	ffmpeg-devel >= 0.8
+BuildRequires:	ffmpeg-devel >= 0.7.1
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2.12
 BuildRequires:	imlib2-devel
