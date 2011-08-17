@@ -1,7 +1,7 @@
 Summary:	Ultimate Music Player
 Name:		deadbeef
 Version:	0.5.1
-Release:	3
+Release:	4
 License:	GPL v2 and LGPL v2.1
 Group:		X11/Applications/Multimedia
 Source0:	http://downloads.sourceforge.net/deadbeef/%{name}-%{version}.tar.bz2
