@@ -1,11 +1,11 @@
 Summary:	Ultimate Music Player
 Name:		deadbeef
-Version:	0.5.1
-Release:	7
+Version:	0.5.2
+Release:	1
 License:	GPL v2 and LGPL v2.1
 Group:		X11/Applications/Multimedia
 Source0:	http://downloads.sourceforge.net/deadbeef/%{name}-%{version}.tar.bz2
-# Source0-md5:	be8359d1bd9cf7679cf2ca748996e726
+# Source0-md5:	0810c1b609b6c1ca43578ebf321fdec4
 Patch0:		lm-missing-symbols.patch
 Patch1:		%{name}-ffmpeg-0.8.patch
 URL:		http://deadbeef.sourceforge.net/
@@ -159,10 +159,10 @@ WavPack decoder.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%{__sed} -i -r "s@^(ffmpeg_la_LIBADD.*)@\1 -lm@" plugins/ffmpeg/Makefile.am
 
 %build
+%{__aclocal}
 %{__automake}
 %configure \
 	--enable-gtkui \
@@ -247,7 +247,7 @@ rm -rf $RPM_BUILD_ROOT
 %files plugin-gtkui
 %defattr(644,root,root,755)
 %attr(755,root,root)%{_libdir}/deadbeef/ddb_gui_GTK2.so*
-%attr(755,root,root)%{_libdir}/deadbeef/converter_gtkui.so*
+%attr(755,root,root)%{_libdir}/deadbeef/converter_gtk2.so*
 
 %files plugin-hotkeys
 %defattr(644,root,root,755)
