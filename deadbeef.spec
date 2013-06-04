@@ -1,19 +1,18 @@
 Summary:	Ultimate Music Player
 Name:		deadbeef
-Version:	0.5.2
-Release:	1
+Version:	0.5.6
+Release:	0.1
 License:	GPL v2 and LGPL v2.1
 Group:		X11/Applications/Multimedia
 Source0:	http://downloads.sourceforge.net/deadbeef/%{name}-%{version}.tar.bz2
-# Source0-md5:	0810c1b609b6c1ca43578ebf321fdec4
+# Source0-md5:	26b6036ca7e59c88267d3de4f42c4d01
 Patch0:		lm-missing-symbols.patch
-Patch1:		%{name}-ffmpeg-0.8.patch
 URL:		http://deadbeef.sourceforge.net/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	automake >= 1.11
 BuildRequires:	curl-devel
 BuildRequires:	dbus-devel
-BuildRequires:	ffmpeg-devel >= 0.7.1
+BuildRequires:	faad2-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2.12
 BuildRequires:	imlib2-devel
@@ -24,10 +23,12 @@ BuildRequires:	libmad-devel
 BuildRequires:	libsamplerate-devel
 BuildRequires:	libsndfile-devel
 BuildRequires:	libvorbis-devel
+BuildRequires:	libzip-devel
 BuildRequires:	pakchois-devel
 BuildRequires:	pkgconfig
 BuildRequires:	pulseaudio-devel
 BuildRequires:	wavpack-devel
+BuildRequires:	yasm
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
@@ -65,13 +66,6 @@ Group:		X11/Applications/Multimedia
 
 %description plugin-cdda
 Audio CD player.
-
-%package plugin-ffmpeg
-Summary:	FFMPEG plugin
-Group:		X11/Applications/Multimedia
-
-%description plugin-ffmpeg
-FFMPEG audio player.
 
 %package plugin-flac
 Summary:	FLAC plugin
@@ -159,7 +153,7 @@ WavPack decoder.
 
 %prep
 %setup -q
-%{__sed} -i -r "s@^(ffmpeg_la_LIBADD.*)@\1 -lm@" plugins/ffmpeg/Makefile.am
+%patch0 -p1
 
 %build
 %{__aclocal}
@@ -181,6 +175,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %find_lang %{name}
 
+# work around automatic docs installation
+%{__rm} -rf %{name}-%{version}-doc
+cp -a $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version} %{name}-%{version}-doc
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -194,7 +193,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README about.txt help.txt
+%doc %{name}-%{version}-doc/{about.txt,ChangeLog,help.txt,README,translators.txt}
+%lang(pt_BR) %doc %{name}-%{version}-doc/help.pt_BR.txt
+%lang(ru) %doc %{name}-%{version}-doc/help.ru.txt
 %attr(755,root,root) %{_bindir}/deadbeef
 %{_desktopdir}/deadbeef.desktop
 %{_iconsdir}/hicolor/*/apps/deadbeef.png
@@ -235,10 +236,6 @@ rm -rf $RPM_BUILD_ROOT
 %files plugin-cdda
 %defattr(644,root,root,755)
 %attr(755,root,root)%{_libdir}/deadbeef/cdda.so*
-
-%files plugin-ffmpeg
-%defattr(644,root,root,755)
-%attr(755,root,root)%{_libdir}/deadbeef/ffmpeg.so*
 
 %files plugin-flac
 %defattr(644,root,root,755)

@@ -1,13 +1,3 @@
-diff -uNr deadbeef-0.5.1.old/plugins/ffap/Makefile.am deadbeef-0.5.1/plugins/ffap/Makefile.am
---- deadbeef-0.5.1.old/plugins/ffap/Makefile.am	2011-03-03 21:06:15.000000000 +0100
-+++ deadbeef-0.5.1/plugins/ffap/Makefile.am	2011-06-06 21:27:36.783839885 +0200
-@@ -4,5 +4,6 @@
- ffap_la_SOURCES = ffap.c
- ffap_la_LDFLAGS = -module
- 
-+ffap_la_LIBADD = $(LDADD) -lm
- AM_CFLAGS = $(CFLAGS) -std=c99
- endif
 diff -uNr deadbeef-0.5.1.old/plugins/ffmpeg/Makefile.am deadbeef-0.5.1/plugins/ffmpeg/Makefile.am
 --- deadbeef-0.5.1.old/plugins/ffmpeg/Makefile.am	2011-03-03 21:06:15.000000000 +0100
 +++ deadbeef-0.5.1/plugins/ffmpeg/Makefile.am	2011-06-06 21:19:42.009745288 +0200
@@ -19,15 +9,16 @@ diff -uNr deadbeef-0.5.1.old/plugins/ffmpeg/Makefile.am deadbeef-0.5.1/plugins/f
 +ffmpeg_la_LIBADD = $(LDADD) $(FFMPEG_DEPS_LIBS) -lm
  AM_CFLAGS = $(CFLAGS) -std=c99 ${FFMPEG_DEPS_CFLAGS}
  endif
-diff -uNr deadbeef-0.5.1.old/plugins/m3u/Makefile.am deadbeef-0.5.1/plugins/m3u/Makefile.am
---- deadbeef-0.5.1.old/plugins/m3u/Makefile.am	2011-05-07 18:42:49.000000000 +0200
-+++ deadbeef-0.5.1/plugins/m3u/Makefile.am	2011-06-06 21:19:24.463173681 +0200
-@@ -5,7 +5,7 @@
+diff --git a/plugins/alac/Makefile.am b/plugins/alac/Makefile.am
+index 0dc48ad..268e3e9 100644
+--- a/plugins/alac/Makefile.am
++++ b/plugins/alac/Makefile.am
+@@ -15,7 +15,7 @@ alac.c decomp.h demux.c demux.h stream.c stream.h\
  
- m3u_la_LDFLAGS = -module
+ alac_la_LDFLAGS = -module
  
--m3u_la_LIBADD = $(LIBADD)
-+m3u_la_LIBADD = $(LIBADD) -lm
- 
- m3u_la_CFLAGS = $(CFLAGS) -std=c99
+-alac_la_LIBADD = $(LDADD) $(FAAD2_LIBS)
++alac_la_LIBADD = $(LDADD) $(FAAD2_LIBS) -lm
+ AM_CFLAGS = $(CFLAGS) -std=c99 -DUSE_MP4FF -DUSE_TAGGING -I../libmp4ff
  endif
+ 
