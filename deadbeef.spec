@@ -13,7 +13,7 @@ BuildRequires:	automake >= 1.11
 BuildRequires:	curl-devel
 BuildRequires:	dbus-devel
 BuildRequires:	faad2-devel
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gtk+2-devel >= 2.12
 BuildRequires:	imlib2-devel
 BuildRequires:	intltool >= 0.40.0
